@@ -6,11 +6,13 @@ import SearchResult from "./components/SearchResult";
 import YourPlaylist from "./components/YourPlaylist";
 
 function App() {
+  // App states
   const [searchTerm, setSearchTerm] = useState("");
   const [data, setData] = useState(null);
   const [playlist, setPlaylist] = useState([]);
   const [playlistName, setPlaylistName] = useState("");
 
+  // API settings
   const options = {
     method: "GET",
     headers: {
@@ -19,6 +21,37 @@ function App() {
     },
   };
 
+  // Local storage (save state after reload)
+
+  // Local storage: playlist
+  useEffect(() => {
+    const savedData = window.localStorage.getItem(
+      "CREATE_PLAYLIST_APP_PLAYLIST"
+    );
+    if (savedData != null) setPlaylist(JSON.parse(savedData));
+  }, []);
+  useEffect(() => {
+    window.localStorage.setItem(
+      "CREATE_PLAYLIST_APP_PLAYLIST",
+      JSON.stringify(playlist)
+    );
+  }, [playlist]);
+
+  // Local storage: playlistName
+  useEffect(() => {
+    const savedData = window.localStorage.getItem(
+      "CREATE_PLAYLIST_APP_PLAYLIST_NAME"
+    );
+    if (savedData != null) setPlaylistName(JSON.parse(savedData));
+  }, []);
+  useEffect(() => {
+    window.localStorage.setItem(
+      "CREATE_PLAYLIST_APP_PLAYLIST_NAME",
+      JSON.stringify(playlistName)
+    );
+  }, [playlistName]);
+
+  // fetch from API by searchTerm
   useEffect(() => {
     fetch(
       `https://deezerdevs-deezer.p.rapidapi.com/search?q=${searchTerm}`,
