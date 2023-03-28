@@ -2,6 +2,8 @@ import React from "react";
 import { Icon } from "@iconify/react";
 
 const YourPlaylist = ({ playlist, setPlaylist }) => {
+
+  // maps songs added to the playlist
   const displayPlaylist = () => {
     if (playlist)
       return playlist.map((song) => (

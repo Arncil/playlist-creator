@@ -2,6 +2,8 @@ import React from "react";
 import { Icon } from "@iconify/react";
 
 const SearchResult = ({ data, setPlaylist }) => {
+
+  // maps the list of search Results
   const result = () => {
     if (data)
       if ("data" in data)
