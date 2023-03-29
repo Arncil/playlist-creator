@@ -13,8 +13,6 @@ const Song = () => {
     fetch(`${options.url}/track/${id}`, options)
       .then((response) => response.json())
       .then((response) => setThisSong(response))
-      .catch((err) => console.log(err));
-    console.log(thisSong);
   }, [id, reload]);
 
   return (
