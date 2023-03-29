@@ -1,13 +1,14 @@
 import React from "react";
 
 const SearchBar = ({ searchTerm, setSearchTerm }) => {
+  const handleOnChange = (e) => setSearchTerm(e.target.value);
   return (
     <form className="search">
       <input
         type="search"
         placeholder="Search..."
-        value={searchTerm.replaceAll("%20", " ")}
-        onChange={(e) => setSearchTerm(e.target.value.replaceAll(" ", "%20"))}
+        value={searchTerm}
+        onChange={handleOnChange}
       />
     </form>
   );

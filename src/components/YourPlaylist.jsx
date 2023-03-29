@@ -1,7 +1,25 @@
 import React from "react";
 import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
 
 const YourPlaylist = ({ playlist, setPlaylist }) => {
+  // delete button logic
+  const handleDelete = (id) =>
+    setPlaylist((prev) => prev.filter((item) => item.id !== id));
+
+  // move up button logic
+  const handleMoveUp = (song) =>
+    setPlaylist((prev) => [
+      song,
+      ...prev.filter((item) => item.id !== song.id),
+    ]);
+
+  // move down button logic
+  const handleMoveDown = (song) =>
+    setPlaylist((prev) => [
+      ...prev.filter((item) => item.id !== song.id),
+      song,
+    ]);
 
   // maps songs added to the playlist
   const displayPlaylist = () => {
@@ -19,30 +37,25 @@ const YourPlaylist = ({ playlist, setPlaylist }) => {
             <Icon
               icon="ic:round-expand-circle-down"
               rotate={2}
-              onClick={() =>
-                setPlaylist((prev) => [
-                  song,
-                  ...prev.filter((item) => item.id !== song.id),
-                ])
-              }
+              onClick={() => handleMoveUp(song)}
+              className="icon"
             />
             <Icon
               icon="ic:round-cancel"
-              onClick={() =>
-                setPlaylist((prev) =>
-                  prev.filter((item) => item.id !== song.id)
-                )
-              }
+              onClick={() => handleDelete(song.id)}
+              className="icon"
             />
             <Icon
               icon="ic:round-expand-circle-down"
-              onClick={() =>
-                setPlaylist((prev) => [
-                  ...prev.filter((item) => item.id !== song.id),
-                  song,
-                ])
-              }
+              onClick={() => handleMoveDown(song)}
+              className="icon"
             />
+            <Link to={`/playlist-creator/${song.id}`}>
+              <Icon
+                icon="heroicons:magnifying-glass-circle-20-solid"
+                className="icon"
+              />
+            </Link>
           </div>
         </div>
       ));
