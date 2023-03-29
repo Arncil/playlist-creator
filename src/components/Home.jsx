@@ -78,15 +78,11 @@ function Home() {
       }, 5000);
   }, [data]);
 
-  // useEffect(() => {
-  //   if (data?.error?.code === 4)
-  //     setTimeout(() => {
-  //       setReload(reload);
-  //     }, 2000);
-  // }, []);
-
+  // declare handlers
   const handleOnChange = (e) => setPlaylistName(e.target.value);
-
+  const handleSetSearchTerm = searchTerm => setSearchTerm(searchTerm);
+  const handleSetPlaylist = playlist => setPlaylist(playlist);
+  
   return (
     <div className="app">
       <div className="search">
@@ -99,11 +95,11 @@ function Home() {
             id="reload"
           />
         </h1>
-        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <SearchBar searchTerm={searchTerm} setSearchTerm={handleSetSearchTerm} />
         <SearchResult
           data={data}
           playlist={playlist}
-          setPlaylist={setPlaylist}
+          setPlaylist={handleSetPlaylist}
           searchTerm={searchTerm}
         />
       </div>
@@ -117,7 +113,7 @@ function Home() {
           />
           <Icon icon="ic:baseline-mode-edit" />
         </div>
-        <YourPlaylist playlist={playlist} setPlaylist={setPlaylist} />
+        <YourPlaylist playlist={playlist} setPlaylist={handleSetPlaylist} />
       </div>
     </div>
   );
