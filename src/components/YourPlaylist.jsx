@@ -33,7 +33,7 @@ const YourPlaylist = ({ playlist, setPlaylist }) => {
             </h3>
             <h5>{song.album.title}</h5>
           </div>
-          <img src={song.album.cover_small} alt="Album's Cover" />
+          <img src={song.album.cover_small} alt="Cover" />
           <div className="playlist-icons">
             <Icon
               icon="ic:round-expand-circle-down"

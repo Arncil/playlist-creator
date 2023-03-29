@@ -26,8 +26,8 @@ body {
     hsl(300, 50%, 50%),
     hsl(200, 50%, 50%)
   );
-  background-size: 400%;
-  animation: bg 30s linear infinite;
+  background-size: 200%;
+  animation: bg 60s linear infinite;
 }
 
 @keyframes bg {
