@@ -135,7 +135,7 @@ img {
 }
 
 .playlist input::placeholder {
-  color:hsla(0, 0%, 85%, 0.4)
+  color: hsla(0, 0%, 85%, 0.4);
 }
 
 .playlist input:focus {

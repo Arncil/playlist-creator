@@ -80,9 +80,9 @@ function Home() {
 
   // declare handlers
   const handleOnChange = (e) => setPlaylistName(e.target.value);
-  const handleSetSearchTerm = searchTerm => setSearchTerm(searchTerm);
-  const handleSetPlaylist = playlist => setPlaylist(playlist);
-  
+  const handleSetSearchTerm = (searchTerm) => setSearchTerm(searchTerm);
+  const handleSetPlaylist = (playlist) => setPlaylist(playlist);
+
   return (
     <div className="app">
       <div className="search">
@@ -95,7 +95,10 @@ function Home() {
             id="reload"
           />
         </h1>
-        <SearchBar searchTerm={searchTerm} setSearchTerm={handleSetSearchTerm} />
+        <SearchBar
+          searchTerm={searchTerm}
+          setSearchTerm={handleSetSearchTerm}
+        />
         <SearchResult
           data={data}
           playlist={playlist}
