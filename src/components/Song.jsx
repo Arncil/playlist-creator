@@ -16,8 +16,11 @@ const Song = () => {
   }, [id, reload]);
 
   useEffect(() => {
-    if (!thisSong?.title) setReload(reload + 1);
-  }, []);
+    if (!thisSong?.title)
+      setTimeout(() => {
+        setReload(reload + 1);
+      }, 5000);
+  }, [thisSong]);
 
   return (
     <div className="song">

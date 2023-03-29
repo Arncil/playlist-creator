@@ -72,8 +72,18 @@ function Home() {
   }, [searchTerm, reload]);
 
   useEffect(() => {
-    if (!data) setReload(reload + 1);
-  }, []);
+    if (!data?.data && searchTerm)
+      setTimeout(() => {
+        setReload(reload + 1);
+      }, 5000);
+  }, [data]);
+
+  // useEffect(() => {
+  //   if (data?.error?.code === 4)
+  //     setTimeout(() => {
+  //       setReload(reload);
+  //     }, 2000);
+  // }, []);
 
   const handleOnChange = (e) => setPlaylistName(e.target.value);
 
@@ -94,6 +104,7 @@ function Home() {
           data={data}
           playlist={playlist}
           setPlaylist={setPlaylist}
+          searchTerm={searchTerm}
         />
       </div>
       <div className="playlist">

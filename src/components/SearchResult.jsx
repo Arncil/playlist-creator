@@ -2,7 +2,7 @@ import React from "react";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 
-const SearchResult = ({ data, playlist, setPlaylist }) => {
+const SearchResult = ({ data, searchTerm, playlist, setPlaylist }) => {
 
   // add song to the playlist, ignore if it's already there
   const handleAdd = (song) => {
@@ -38,6 +38,7 @@ const SearchResult = ({ data, playlist, setPlaylist }) => {
           </div>
         </div>
       ));
+      else if(searchTerm) return <div className="search-result"><h3>Loading...</h3></div>
   };
 
   return <>{result()}</>;

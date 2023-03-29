@@ -56,6 +56,10 @@ body {
   flex: 1;
 }
 
+.search {
+  height: min-content;
+}
+
 .playlist {
   align-items: end;
 }
