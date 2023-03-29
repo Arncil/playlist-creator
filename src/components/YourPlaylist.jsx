@@ -8,11 +8,12 @@ const YourPlaylist = ({ playlist, setPlaylist }) => {
     setPlaylist((prev) => prev.filter((item) => item.id !== id));
 
   // move up button logic
-  const handleMoveUp = (song) =>
+  const handleMoveUp = (song) => {
     setPlaylist((prev) => [
       song,
       ...prev.filter((item) => item.id !== song.id),
     ]);
+  };
 
   // move down button logic
   const handleMoveDown = (song) =>

@@ -12,6 +12,7 @@ function Home() {
   const [data, setData] = useState([]);
   const [playlist, setPlaylist] = useState([]);
   const [playlistName, setPlaylistName] = useState("");
+  const [reload, setReload] = useState(0);
 
   // Local storage (save state after reload)
 
@@ -68,22 +69,38 @@ function Home() {
     fetch(`${options.url}/search?q=${searchTerm}`, options)
       .then((response) => response.json())
       .then((response) => setData(response));
-  }, [searchTerm]);
+  }, [searchTerm, reload]);
+
+  useEffect(() => {
+    if (!data) setReload(reload + 1);
+  }, []);
 
   const handleOnChange = (e) => setPlaylistName(e.target.value);
 
   return (
     <div className="app">
       <div className="search">
-        <h1>Playlist Creator</h1>
+        <h1>
+          Playlist Creator
+          <Icon
+            icon="ion:reload-circle-sharp"
+            className="icon"
+            onClick={() => setReload(reload + 1)}
+            id="reload"
+          />
+        </h1>
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <SearchResult data={data} setPlaylist={setPlaylist} />
+        <SearchResult
+          data={data}
+          playlist={playlist}
+          setPlaylist={setPlaylist}
+        />
       </div>
       <div className="playlist">
         <div className="playlist-name">
           <input
             type="text"
-            placeholder="Your's playlist name"
+            placeholder="Name this playlist"
             value={playlistName}
             onChange={handleOnChange}
           />

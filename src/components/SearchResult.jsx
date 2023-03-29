@@ -2,7 +2,15 @@ import React from "react";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 
-const SearchResult = ({ data, setPlaylist }) => {
+const SearchResult = ({ data, playlist, setPlaylist }) => {
+
+  // add song to the playlist, ignore if it's already there
+  const handleAdd = (song) => {
+    let check = false;
+    if (playlist) check = playlist.find((item) => item.id === song.id);
+    if (!check) setPlaylist((prev) => [...prev, song]);
+  };
+
   // maps the list of search Results
   const result = () => {
     if (data && "data" in data && data.data[0])
@@ -18,7 +26,7 @@ const SearchResult = ({ data, setPlaylist }) => {
           <div className="search-result-icon">
             <Icon
               icon="ic:baseline-add-circle"
-              onClick={() => setPlaylist((prev) => [...prev, song])}
+              onClick={() => handleAdd(song)}
               className="icon"
             />
             <Link to={`/playlist-creator/${song.id}`}>

@@ -6,7 +6,7 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
     <form className="search">
       <input
         type="search"
-        placeholder="Search..."
+        placeholder="Search for a song..."
         value={searchTerm}
         onChange={handleOnChange}
       />

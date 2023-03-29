@@ -12,8 +12,12 @@ const Song = () => {
   useEffect(() => {
     fetch(`${options.url}/track/${id}`, options)
       .then((response) => response.json())
-      .then((response) => setThisSong(response))
+      .then((response) => setThisSong(response));
   }, [id, reload]);
+
+  useEffect(() => {
+    if (!thisSong?.title) setReload(reload + 1);
+  }, []);
 
   return (
     <div className="song">
