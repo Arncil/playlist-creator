@@ -6,6 +6,7 @@ import { Icon } from "@iconify/react";
 const Song = () => {
   const { id } = useParams();
   const [thisSong, setThisSong] = useState(null);
+  const [reload, setReload] = useState(0);
 
   // fetch from API by song id
   useEffect(() => {
@@ -14,7 +15,7 @@ const Song = () => {
       .then((response) => setThisSong(response))
       .catch((err) => console.log(err));
     console.log(thisSong);
-  }, [id]);
+  }, [id, reload]);
 
   return (
     <div className="song">
@@ -26,7 +27,7 @@ const Song = () => {
           <Icon
             icon="ion:reload-circle-sharp"
             className="icon"
-            onClick={() => window.location.reload()}
+            onClick={() => setReload(reload + 1)}
           />
         </div>
         <div className="song-data">
